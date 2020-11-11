@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Dispositivos</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar w/ text</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      Navbar text with an inline element
+    </span>
+  </div>
+</nav>
+	</header>
+	
+	<section>
+		<div class="container" style="width:60%; padding-bottom: 30px">
+			<div class="card" style="width: 18rem;" th:each="usuario : ${usuarios}">
+			  <div class="card-body">
+   				 <h5 class="card-title" th:text="${usuario.nome}"></h5>
+    			 <p class="card-text" th:text="${usuario.senha}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    			 <a href="#" class="btn btn-primary">Go link</a>
+  			</div>
+		</div>
+	</div>
+	</section>
+	
+	<footer></footer>
+</body>
+</html>

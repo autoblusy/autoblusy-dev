@@ -14,6 +14,7 @@ public class DispositivoServiceImp implements DispositivoService{
 	
 	@Autowired
 	DispositivoRepository dispositivoRepository;
+	
 	@Override
 	public List<Dispositivo> findAll() {
 		return dispositivoRepository.findAll();
