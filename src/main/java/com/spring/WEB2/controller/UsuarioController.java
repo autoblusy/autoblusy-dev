@@ -27,7 +27,7 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView( "usuarios");
 		List<Usuario> usuarios = usuarioService.findAll();
 		mv.addObject("usuarios",usuarios);
-		
+		System.out.println(usuarios.get(0).getAdmin());
 		return mv;
 	}
 	

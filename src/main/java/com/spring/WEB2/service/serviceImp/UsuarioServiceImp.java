@@ -3,6 +3,8 @@ package com.spring.WEB2.service.serviceImp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.WEB2.model.Usuario;
@@ -28,7 +30,9 @@ public class UsuarioServiceImp implements UsuarioService{
 
 	@Override
 	public Usuario save(Usuario usuario) {
-		// TODO Auto-generated method stub
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
+		usuario.setSenha(passwordEncoder.encode(usuario.getPassword()));
+		System.out.println(usuario.getCpf());
 		return usuarioRepository.save(usuario);
 	}
 	

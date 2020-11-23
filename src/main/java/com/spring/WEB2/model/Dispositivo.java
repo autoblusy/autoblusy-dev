@@ -1,5 +1,6 @@
 package com.spring.WEB2.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,23 +13,14 @@ public class Dispositivo {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO	)
-	private Long codigo;
+	@Column(name = "id_dispositivo")
+	private Long id;
 	
 	private String nome;
 	
 	private String endereco;
 	
 	private boolean status;
-	
-	private long id;
-
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
 
 	public String getNome() {
 		return nome;
