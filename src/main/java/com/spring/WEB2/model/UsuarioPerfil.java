@@ -11,14 +11,18 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class UsuarioPerfil {
+	
+	
+	public UsuarioPerfil() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario_perfil")
 	private long id;
 	
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn( name = "id_usuario")
-	private Usuario usuario;
 	
 	private String nome;
 	
@@ -31,4 +35,45 @@ public class UsuarioPerfil {
 	@Column(name = "ultimo_acesso")
 	private String ultimoAcesso;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getFotoUsuario() {
+		return fotoUsuario;
+	}
+
+	public void setFotoUsuario(String fotoUsuario) {
+		this.fotoUsuario = fotoUsuario;
+	}
+
+	public String getCorUsuario() {
+		return corUsuario;
+	}
+
+	public void setCorUsuario(String corUsuario) {
+		this.corUsuario = corUsuario;
+	}
+
+	public String getUltimoAcesso() {
+		return ultimoAcesso;
+	}
+
+	public void setUltimoAcesso(String ultimoAcesso) {
+		this.ultimoAcesso = ultimoAcesso;
+	}
+
+	
 }

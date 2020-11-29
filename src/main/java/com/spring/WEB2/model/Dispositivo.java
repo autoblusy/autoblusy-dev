@@ -10,7 +10,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="dispositivos")
 public class Dispositivo {
-	
+	public Dispositivo() {
+		// TODO Auto-generated constructor stub
+	}
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO	)
 	@Column(name = "id_dispositivo")

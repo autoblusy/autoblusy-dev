@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -26,13 +29,17 @@ public class Usuario implements UserDetails{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_dispositivo")
+	@Column(name = "id_usuario")
 	private long id;
 	
 	
 	private long cpf;
 	
 	private String nome;
+	
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinColumn( name = "id_usuario_perfil")
+	private UsuarioPerfil usuarioPerfil;
 	
 	private String senha;
 	
@@ -122,6 +129,15 @@ public class Usuario implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
+
+	public UsuarioPerfil getUsuarioPerfil() {
+		return usuarioPerfil;
+	}
+
+	public void setUsuarioPerfil(UsuarioPerfil usuarioPerfil) {
+		this.usuarioPerfil = usuarioPerfil;
+	}
+	
 	
 	
 }

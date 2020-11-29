@@ -26,6 +26,7 @@ public class UsuarioController {
 	public ModelAndView getUsuarios() {
 		ModelAndView mv = new ModelAndView( "usuarios");
 		List<Usuario> usuarios = usuarioService.findAll();
+		System.out.println(usuarioService.findByCpf(3123).getUsuarioPerfil().getNome());
 		mv.addObject("usuarios",usuarios);
 		System.out.println(usuarios.get(0).getAdmin());
 		return mv;

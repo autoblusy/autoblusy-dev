@@ -11,8 +11,7 @@ public class IndexController {
 	
 	@RequestMapping( value="/", method = RequestMethod.GET)
 	public ModelAndView getHome() {
-		ModelAndView mv = new ModelAndView("index");
-		return mv;
+		return new ModelAndView("redirect:/login");
 	}
 	 @GetMapping("/login")
 	    public String login() {

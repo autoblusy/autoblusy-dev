@@ -8,5 +8,4 @@ import com.spring.WEB2.model.UsuarioPerfil;
 
 @Repository
 public interface UsuarioPerfilRepository extends JpaRepository<UsuarioPerfil, Long>{
-
 }

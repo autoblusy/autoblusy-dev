@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		String password = "321321"; 
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
 		String encodedPassword = passwordEncoder.encode(password);
@@ -43,7 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	public void configure(WebSecurity web) throws Exception{
-		web.ignoring().antMatchers("/materialize/**", "/style/**");
+		web.ignoring().antMatchers("/css/**", "/images/**");
 	}
-	
 }
