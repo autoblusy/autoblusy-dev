@@ -51,7 +51,6 @@
         }
         }
 
-    
 
         /* Large devices (laptops/desktops, 992px and up) */
 
@@ -109,8 +108,7 @@
     </style>
   </head >
   <body style="">
-  
-  <div th:if="${error}" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div th:if="${error}" class="alert alert-warning alert-dismissible fade show" role="alert">
 	  <strong>Oloco, meu!</strong> cpf não encontrado!
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    <span aria-hidden="true">&times;</span>
@@ -121,39 +119,35 @@
        <div class="card text-center h-72 w-40 py-3 px-3 card-body-login border-0 d-flex align-items-center">
             <div class="mt-4 mb-5 py-5  row d-flex mx-auto card-header-custom ">
                 <div class="col-12">
-                       <img class="img p-3" th:src="@{/images/image1.png}" />
+                       <img class="img p-3" th:src="@{/images/image1.png}">
                 </div>
             </div>
-            
-
+				
             <div class="card-body-custom w-75">
-                   <form class=" form-group" name="" th:action="@{/login}" method="post">               
-                   <fieldset>                
-              <div class="row">
+                   <form class=" form-group" name="f" th:action="@{/forgot}" method="post">               
+                   <fieldset>           
+              <input class=" btn btn-block col-12 input-custom-login text-left" placeholder="cpf"  type="hidden"  th:value="${usuario.getCpf()}" id="username" name="username"/>         
+              <div class="row mb-3">
                    <div class="input-group col-12 mb-2">
-                    <input class=" btn btn-block col-12 input-custom-login text-left" placeholder="username" type="text" id="username" name="username"/>    
+                   <label th:text="${usuario.getUsuarioPerfil().getDica1()}"></label>
+                    <input class=" btn btn-block col-12 input-custom-login text-left" placeholder="Digite a palavra chave 1" type="text" id="palavrachave1" name="palavrachave1"/>    
                </div>    
                 <div class=" input-group col-12">
-                    <input class=" btn btn-block col-12 input-custom-login text-left" placeholder="password" type="password" id="password"  name="password"/>    
+                   <label th:text="${usuario.getUsuarioPerfil().getDica2()}"></label>
+                    <input class=" btn btn-block col-12 input-custom-login text-left" placeholder="Digite a palavra chave 2" type="text" id="palavrachave2"  name="palavrachave2"/>    
                 </div>
               </div>
-                <div class="py-4">
-                    <a class="link-custom py-5 font-300w" id="forgotpassword">Esqueci a senha!</a>
-                </div>
-                    <button type="submit" class="btn btn-lg btn-custom-login col-5">Entrar</button>
+        
+                    <button type="submit" class="btn btn-lg btn-custom-login mt-5  col-5">Verificar</button>
 
             </fieldset>
              </form>
             </div>
        </div>
     </div>
+   	
+   	<script type="text/javascript">
+   		document.getElementById("username").value = (window.sessionStorage.getItem('username'));
+   	</script>
   </body>
-  
-  <script type="text/javascript">
-  		document.getElementById("forgotpassword").onclick = function(e) {
-  			let value = document.getElementById("username").value;
-  				window.sessionStorage.setItem("username",value);
-  				window.location.href = `/forgot/${value}`
-  		}
-  </script>
 </html>

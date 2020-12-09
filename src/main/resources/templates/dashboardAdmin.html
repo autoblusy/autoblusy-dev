@@ -1,0 +1,194 @@
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Dashboard ADMIN</title>
+    <style type="text/css">
+    	.bg-dashboard {
+    		background-color: #C4C4C4 !important;
+    	}
+        .bg-dashboard.card{
+            height: 60vh
+        }
+    	.nav-link, .figure-caption {
+    		color: #023!important
+    	}
+    	.navbar-nav .nav-item{
+    		margin-left: 8rem!important;
+    	}
+    	a.nav-link {
+    		font-size: 3.2em
+    	}
+
+    	 .nav {
+    		height: 12.8vh!important;
+    	}
+    	 img {
+            max-width: 24vw!important
+        }
+
+        .photo-content {
+        	max-height: 40px!important;
+        	min-height: 40px!important;
+        	border: 1px;
+        	margin-bottom: 7.1vh!important;
+        }
+         .photo-content figcaption {
+         }
+        .photo-content img {
+        	width: 4.4vw!important;
+        	height: 4.4vw!important;
+        }
+        .card-item {
+            margin-bottom: 6rem;
+        }
+        .card-body:first-child {
+            padding-bottom: 0!important;
+        }
+        .card-body:last-child{
+            padding-top: 0!important;
+        }
+        .circle{
+            content:  ' ';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: red
+        }
+        header {
+        	height: 14%
+        }
+
+        aside.bg-aside {
+            background-color:  rgba(76, 156, 205, 0.7);
+            height: 5%;
+            font-weight: 500
+        }
+
+        .h-82 {
+            height: 78%;
+        }
+
+        main section {
+             width: 20vw;
+             height: 20vh;
+        }
+
+        .list-data {
+            width: 25vw;
+            height: 38vh;
+            background-color: #C1E8FF;
+        }
+
+          @media only screen and (max-width: 1400px) {
+            main  {
+                padding: 0 unset 0 unset !important;
+                margin: 0 unset 0 unset !important;
+            }
+             .bg-dashboard .card-body .card-item{
+               padding-top: 0!important
+          }
+          .bg-dashboard .card-body .card-item{
+               padding-bottom: 0!important
+          }
+          .list-data {
+            width: 25vw;
+            height: 42vh;
+            background-color: #C1E8FF;
+        }
+         .h-82 {
+            height: 74%;
+        }
+        }
+
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding-top: 20px
+        }
+
+        footer * {
+            margin-right: 3.8rem;
+        }
+
+    </style>
+  </head >
+  <body>	
+	<header class="bg-dashboard d-flex">
+			<nav class="navbar navbar-expand-lg  w-100 bg-dashboard py-3">
+	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">
+	     <img th:src="@{/images/image1.png}" alt="..." class="img img-fluid img-thumbnail bg-dashboard" style="border: none">
+	  </a>
+
+	  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo03">
+	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	     <!--  <li class="nav-item active">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
+	      </li> -->
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Administração</a>
+	      </li>  
+	       <li class="nav-item">
+	        <a class="nav-link" href="#">Perfil</a>
+	      </li>  
+	    </ul>
+	    <figure class="figure photo-content mr-4">
+	    	<img src="fto1.jpg" alt="..." class="figure-img img img-fluid ">
+          
+              <figcaption class="figure-caption ml-1"> 
+              <div class="circle mr-1" style="display: inline-block"></div><span th:text="${perfilUsuario.getNome()}"></span>
+        </figcaption>
+
+	    </figure>
+	  </div>
+	</nav>
+		</header>
+        <aside class="bg-aside d-flex align-items-center mb-4" >
+               <div class="col-6 d-flex justify-content-between">
+                    <span class="ml-5 mr-0">Ultima vez logado<span class="ml-2" th:text="${perfilUsuario.getUltimoAcesso()}"></span></span>
+                   <span>Ultima alteração no sistema</span>
+               </div>
+        </aside>
+        <main class=" bg-white h-82 py-5 row w-100">
+            <section class="col-6 d-flex justify-content-center"> 
+                <div class="card w-75 bg-dashboard">
+                    <div class="card-body p-5">
+                        <div class="card-item p-5">
+                            <h2 class="display-4">Perfil:</h2>
+                        </div>
+                         <div class="card-item p-5">
+                            <h2 class="display-4">Permissões:</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="col-6 d-flex justify-content-center"> 
+                <div class="card w-75 bg-dashboard">
+                    <div class="card-body">
+                          <div class="card-item p-5">
+                            <h2 class="display-4">Dispostivos:</h2>
+                            <div class="list-data rounded">
+                                <ul style="list-style: none">
+                                    <li>Portão</li>
+                                    <li>Telivisao</li>
+                                    <li>Janela</li>
+                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-dashboard d-flex py-2 justify-content-start align-items-center d-flex pl-5">
+            <span> Copyright © 2020 Autoblusy LTDA Todos os direitos reservados </span>            
+            <span> Política de Privacidade </span>
+            <span> Direitos do Titular </span>
+        </footer>
+  </body>
+</html>

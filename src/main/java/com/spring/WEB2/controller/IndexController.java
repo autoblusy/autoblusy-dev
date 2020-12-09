@@ -11,10 +11,6 @@ public class IndexController {
 	
 	@RequestMapping( value="/", method = RequestMethod.GET)
 	public ModelAndView getHome() {
-		return new ModelAndView("redirect:/login");
+		return new ModelAndView("redirect:/dashboard");
 	}
-	 @GetMapping("/login")
-	    public String login() {
-	        return "login";
-	    }
 }

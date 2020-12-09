@@ -1,13 +1,12 @@
 package com.spring.WEB2.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.View;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +34,6 @@ public class UsuarioController {
 	  @RequestMapping(value="/usuarios/novo", method = RequestMethod.GET)
 	    public ModelAndView getUsuarioForm(){
 		  ModelAndView mv = new ModelAndView( "usuarioform");
-		  
 		  return mv;
 	    }
 
@@ -48,4 +46,33 @@ public class UsuarioController {
 	        usuarioService.save(usuario);
 	        return "redirect:/usuarios";
 	    }
+	    
+	    
+		@RequestMapping(value="/dashboard", method = RequestMethod.GET)
+	    public ModelAndView Dashboard(){
+			  
+			Object  principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String nome;
+			if (principal instanceof UserDetails) {
+			    nome = ((UserDetails)principal).getUsername();
+			} else {
+			    nome = principal.toString();
+			}
+			Usuario user = this.usuarioService.findByCpf(Long.parseLong(nome));
+			ModelAndView mv;
+			if( user.getAdmin()) {
+				mv = new ModelAndView("dashboardAdmin");
+			} else {
+				mv = new ModelAndView("dashboardUsuario");
+			}
+			mv.addObject("usuario", user);
+			mv.addObject("perfilUsuario", user.getUsuarioPerfil());
+			return mv;
+}
+		@RequestMapping(value="/successLogout", method = RequestMethod.GET)
+	    public String logoutSuccess(){
+			System.out.println("entrei no logout");
+			return "/";
+		}
+	    
 }

@@ -1,13 +1,13 @@
 package com.spring.WEB2.model;
 
-import javax.persistence.CascadeType;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 public class UsuarioPerfil {
@@ -34,6 +34,20 @@ public class UsuarioPerfil {
 	
 	@Column(name = "ultimo_acesso")
 	private String ultimoAcesso;
+	
+	@Column(name = "dica1")
+	private String dica1;
+	
+	@Column(name = "dica2")
+	private String dica2;
+	
+	
+	@Column(name = "senha_recuperacao_1")
+	private String senha_recuperacao1;
+	
+	@Column(name = "senha_recuperacao_2")
+	private String senha_recuperacao2;
+
 
 	public long getId() {
 		return id;
@@ -68,12 +82,50 @@ public class UsuarioPerfil {
 	}
 
 	public String getUltimoAcesso() {
-		return ultimoAcesso;
+		String ano =  this.ultimoAcesso.substring(0, 4);
+		String mes =  this.ultimoAcesso.substring(5, 7);
+		String dia = this.ultimoAcesso.substring(8, 10);
+		return new String(dia + "/"+mes+"/"+ano);
 	}
 
 	public void setUltimoAcesso(String ultimoAcesso) {
 		this.ultimoAcesso = ultimoAcesso;
 	}
 
+	public String getDica1() {
+		return dica1;
+	}
+
+	public void setDica1(String dica1) {
+		this.dica1 = dica1;
+	}
+
+	public String getDica2() {
+		return dica2;
+	}
+
+	public void setDica2(String dica2) {
+		this.dica2 = dica2;
+	}
+
+	public String getSenha_recuperacao1() {
+		return senha_recuperacao1;
+	}
+
+	public void setSenha_recuperacao1(String senha_recuperacao1) {
+		this.senha_recuperacao1 = senha_recuperacao1;
+	}
+
+	public String getSenha_recuperacao2() {
+		return senha_recuperacao2;
+	}
+
+	public void setSenha_recuperacao2(String senha_recuperacao2) {
+		this.senha_recuperacao2 = senha_recuperacao2;
+	}
+	
+	
+
+	
 	
 }

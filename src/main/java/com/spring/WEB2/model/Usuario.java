@@ -35,8 +35,6 @@ public class Usuario implements UserDetails{
 	
 	private long cpf;
 	
-	private String nome;
-	
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn( name = "id_usuario_perfil")
 	private UsuarioPerfil usuarioPerfil;
@@ -61,14 +59,6 @@ public class Usuario implements UserDetails{
 
 	public void setCpf(long cpf) {
 		this.cpf = cpf;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getSenha() {
