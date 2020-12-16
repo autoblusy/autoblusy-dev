@@ -3,14 +3,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>Please Login</title>
+    <title>Logout</title>
     <style type="text/css">
         * {
             font-family: 'Roboto', sans-serif;
-        }
-        
-        body {
-        	overflow: hidden;
         }
         .card-body-login {
             background: rgba(172, 172, 172, 0.21);
@@ -91,13 +87,7 @@
         .font-300w {
             font-weight: 300;
         }
-	
-		.position-absolute {
-			position: absolute;
-			top: 0;
-			left: 0;
-			overflow: hidden;
-		}
+
 
 
         ::-webkit-input-placeholder {
@@ -118,60 +108,18 @@
         }
     </style>
   </head >
-  <body>
-  
-  
-    <div style="background-color: #ECEEFF" class="d-flex h-100 justify-content-center align-items-center">
-    	<div th:if="${message}" class="alert alert-warning alert-dismissible fade show position-absolute w-100" role="alert">
-	 	 [[${message}]]
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    <span aria-hidden="true">&times;</span>
-	  </button>
-	</div>
-	<div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show position-absolute w-100" role="danger">
-	  <div >
-            Credenciais Inválidas
-        </div>
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    <span aria-hidden="true">&times;</span>
-	  </button>
-	</div>
-       <div class="card text-center h-72 w-40 py-3 px-3 card-body-login border-0 d-flex align-items-center">
+  <body style="">
+    <div style="background-color: #ECEEFF" class="d-flex h-100 justify-content-center align-items-center
+">
+       <div class="card text-center h-72 w-40 py-3 px-3 card-body-login border-0 d-flex align-items-between">
             <div class="mt-4 mb-5 py-5  row d-flex mx-auto card-header-custom ">
                 <div class="col-12">
                        <img class="img p-3" th:src="@{/images/image1.png}" />
                 </div>
             </div>
-            
-
-            <div class="card-body-custom w-75">
-                   <form class=" form-group" name="" th:action="@{/login}" method="post">               
-                   <fieldset>                
-              <div class="row">
-                   <div class="input-group col-12 mb-2">
-                    <input class=" btn btn-block col-12 input-custom-login text-left" placeholder="username" type="text" id="username" name="username"/>    
-               </div>    
-                <div class=" input-group col-12">
-                    <input class=" btn btn-block col-12 input-custom-login text-left" placeholder="password" type="password" id="password"  name="password"/>    
-                </div>
-              </div>
-                <div class="py-4">
-                    <a class="link-custom py-5 font-300w" id="forgotpassword">Esqueci a senha!</a>
-                </div>
-                    <button type="submit" class="btn btn-lg btn-custom-login col-5">Entrar</button>
-
-            </fieldset>
-             </form>
-            </div>
+            <h1 class="display-4 mb-5">Logout ocorrido com sucesso !</h1>
+            <a href="/login" class="link mt-1 mt-5">Voltar para o login</a>
        </div>
     </div>
   </body>
-  
-  <script type="text/javascript">
-  		document.getElementById("forgotpassword").onclick = function(e) {
-  			let value = document.getElementById("username").value;
-  				window.sessionStorage.setItem("username",value);
-  				window.location.href = `/forgot/${value}`
-  		}
-  </script>
 </html>

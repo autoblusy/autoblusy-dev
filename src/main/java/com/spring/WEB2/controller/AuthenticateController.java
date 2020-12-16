@@ -3,6 +3,7 @@ package com.spring.WEB2.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.WEB2.model.Usuario;
 import com.spring.WEB2.repository.UsuarioRepository;
+import com.spring.WEB2.utils.MessageUtils;
 import com.spring.WEB2.utils.StringUtils;
 
 @Controller
@@ -23,8 +25,17 @@ public class AuthenticateController {
 	UsuarioRepository usuarioRepository;
 	
 	 @GetMapping("/login")
-	    public String login() {
-	        return "login";
+	    public ModelAndView login() {
+		 ModelAndView  mv = new ModelAndView();
+		 System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser" );
+	        if( SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser")
+	        {
+		        mv.setViewName("redirect:/");
+		        return mv;
+	        }
+	        
+	        mv.setViewName("login");
+	        return mv;
 	    }
 	 
 	 
@@ -56,7 +67,7 @@ public class AuthenticateController {
 
 		 if(usuario == null) {
 			 ModelAndView mv = new ModelAndView();
-			 mv.addObject("error","cpf não definido");
+			 mv.addObject("message",new MessageUtils(0, "Cpf não encontrado"));
 			 mv.setViewName("login");
 			 return mv;
 		 } else {
@@ -93,6 +104,7 @@ public class AuthenticateController {
 	// finaliza sessão
 	 @RequestMapping("logout")
 	 public String logout(HttpSession session) {
+		 System.out.println((Usuario) session.getAttribute("usuario"));
 	 	session.invalidate();
 	 	return "redirect:/successLogout";
 	 }

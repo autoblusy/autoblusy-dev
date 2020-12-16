@@ -13,8 +13,4 @@ public class UsuarioPerfilServiceImp implements UsuarioPerfilService{
 	@Autowired
 	UsuarioPerfilRepository usuarioPerfilRepository;
 
-	@Override
-	public UsuarioPerfil findPerfilByIdUsuario(long id) {
-		return null;
-	}
 }

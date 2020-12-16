@@ -9,7 +9,7 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/css/forms.css">
-<title>Cadastrar Usuário</title>
+<title>Alterar Perfil</title>
 <style type="text/css">
 .bg-dashboard {
 	background-color: #C4C4C4 !important;
@@ -69,7 +69,7 @@ img {
 	height: 8px;
 	border-radius: 50%;
 	background-color: red;
-	display: inline-flexs
+	display: inline-flex
 }
 
 header {
@@ -136,7 +136,7 @@ footer * {
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	  <a class="navbar-brand" href="/">
+	  <a class="navbar-brand" href="#">
 	     <img th:src="@{/images/image1.png}" alt="..." class="img img-fluid img-thumbnail bg-dashboard" style="border: none">
 	  </a>
 
@@ -163,8 +163,8 @@ footer * {
 				  </a>
 				
 				  <div class="dropdown-menu pl-4 mt-3" aria-labelledby="dropdownMenuLink" >
-				    <a class="dropdown-item" href="/usuario/mostrar">Meu Perfil</a>
 				    <a class="dropdown-item" href="/logout">Logout</a>
+				    
 				  </div>
 				</div>
         </figcaption>
@@ -205,7 +205,6 @@ footer * {
 				  </a>
 				
 				  <div class="dropdown-menu pl-4 mt-3" aria-labelledby="dropdownMenuLink" >
-				    <a class="dropdown-item" href="/usuario/mostrar">Meu Perfil</a>
 				    <a class="dropdown-item" href="/logout">Logout</a>
 				  </div>
 				</div>
@@ -216,46 +215,40 @@ footer * {
 	</nav>
 		</header>
 	<section class="container">
-		<div class="form-title form-title text-center pr-3 pb-4 pt-4">Cadastrar Usuário</div>
+		<div class="form-title form-title text-center pr-3 pb-4 pt-4">Alterar Perfil</div>
 		
 		<form method="post"  th:action="@{/usuarios/novo}" class="form-row d-flex flex-column align-items-center"  enctype="multipart/form-data">
 			<div class="row w-100">
 				<div class="form-group col-5">
-					<label for="cpf">Cpf *</label> 
-					<input type="number" class="form-control" name="cpf" required>
+					<label for="corUsuario">Cor</label> 
+					<input type="color" class="form-control" name="corUsuario" required>
 				</div>
 				<div class="col-2"></div>
 				<div class="form-group col-5">
-					<label for="senha">Senha *</label> 
-					<input type="password" class="form-control" name="senha" required>
-				</div>
-			</div>
-			<div class="row w-100">
-				<div class="form-group col-5">
-				<label for="nome">Nome *</label> 
-					<input type="text" class="form-control" name="nome" required>
-				</div>
-				<div class="col-2"></div>
-				<div class="form-group col-5 d-flex align-items-center justify-content-around">
-					<div class="custom-control custom-radio custom-control-inline ">
-					  <input type="radio" id="admin-radio1" name="admin" class="custom-control-input pt-4" value=1 checked>
-					  <label class="custom-control-label" for="admin-radio2">Admin</label>
-					</div>
-					<div class="custom-control custom-radio custom-control-inline">
-					  <input type="radio" id="admin-radio2" name="admin" class="custom-control-input" value=2>
-					  <label class="custom-control-label" for="admin-radio2">Usuario Comum</label>
-					</div>
+					<label for="fotoUsuario">Foto</label> 
+					<input type="file" class="form-control" name="fotoUsuario">
 				</div>
 			</div>
 				<div class="row w-100">
 				<div class="form-group col-5">
-					<label for="photo">Foto</label> 
-					<input type="file" class="form-control" name="photo">
+					<label for="senha">Dica Recuperação 1</label> 
+					<input type="text" class="form-control" name="dica1">
 				</div>
 				<div class="col-2"></div>
 				<div class="form-group col-5">
-				<label for="nome">Cor do Usuário</label> 
-					<input type="color" class="form-control" name="corUsuario">
+				<label for="nome">Senha de recuperação 1</label> 
+					<input type="password" class="form-control" name="senha_recuperacao_1">
+				</div>
+			</div>
+			<div class="row w-100">
+				<div class="form-group col-5">
+					<label for="senha">Dica Recuperação 2</label> 
+					<input type="text" class="form-control" name="dica2">
+				</div>
+				<div class="col-2"></div>
+				<div class="form-group col-5">
+				<label for="nome">Senha de recuperação 2</label> 
+					<input type="password" class="form-control" name="senha_recuperacao_2">
 				</div>
 			</div>
 			<small class="form-text text-muted">(*) Campos obrigatórios</small>

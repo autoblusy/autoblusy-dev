@@ -48,7 +48,6 @@ public class UsuarioPerfil {
 	@Column(name = "senha_recuperacao_2")
 	private String senha_recuperacao2;
 
-
 	public long getId() {
 		return id;
 	}
@@ -66,6 +65,9 @@ public class UsuarioPerfil {
 	}
 
 	public String getFotoUsuario() {
+		if(fotoUsuario == null) {
+			return "user.png";
+		}
 		return fotoUsuario;
 	}
 
@@ -122,10 +124,6 @@ public class UsuarioPerfil {
 
 	public void setSenha_recuperacao2(String senha_recuperacao2) {
 		this.senha_recuperacao2 = senha_recuperacao2;
-	}
-	
-	
-
-	
+	}	
 	
 }

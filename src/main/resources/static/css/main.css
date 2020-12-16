@@ -1,0 +1,12 @@
+.dropdown-menu {
+	    position: absolute;
+	    left: -80px;
+	    top: 8px;
+	    opacity: 0.9;
+	    background-color: #3B98D1;
+ 	    width: 70%!important;
+}
+
+* {
+	background-color: red;
+}

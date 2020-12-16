@@ -81,7 +81,7 @@ public class Usuario implements UserDetails{
 	        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
 	        list.add(new SimpleGrantedAuthority( (this.getAdmin() == true)? "ADMIN":"USER" ));
 	        System.out.println(this.admin);
-	        System.out.println("EAI");
+	        System.out.println(list.get(0));
 	        return list;
 	    }
 

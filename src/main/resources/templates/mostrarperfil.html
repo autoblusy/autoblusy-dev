@@ -9,7 +9,7 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/css/forms.css">
-<title>Cadastrar Usuário</title>
+<title>Alterar Perfil</title>
 <style type="text/css">
 .bg-dashboard {
 	background-color: #C4C4C4 !important;
@@ -63,15 +63,35 @@ img {
 	padding-top: 0 !important;
 }
 
+input:disabled {
+	color: #010!important;
+}
+
 .circle {
 	content: ' ';
 	width: 8px;
 	height: 8px;
 	border-radius: 50%;
 	background-color: red;
-	display: inline-flexs
+	display: inline-flex
 }
 
+.circle-bigger {
+	width: 220px;
+	height: 220px;
+	border-radius: 50%;
+	background-color: #C4C4C4;
+	display: inline-flex
+}
+
+.circle-bigger-photo {
+	width: 190px;
+	height: 190px;
+	margin-top: 8px!important;
+	border-radius: 50%;
+	background-color: #C4C4C4;
+	display: inline-flex
+}
 header {
 	height: 14%
 }
@@ -136,21 +156,23 @@ footer * {
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	  <a class="navbar-brand" href="/">
+	    <a class="navbar-brand" href="/">
 	     <img th:src="@{/images/image1.png}" alt="..." class="img img-fluid img-thumbnail bg-dashboard" style="border: none">
 	  </a>
+
 
 	  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo03">
 	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	     <!--  <li class="nav-item active">
 	        <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
 	      </li> -->
-	      <li class="nav-item">
+
+	       <li class="nav-item">
 	        <a class="nav-link" href="#">Meus dispositivos</a>
 	      </li>  
-	       <li class="nav-item">
-	        <a class="nav-link" href="#">Perfil</a>
-	      </li>  
+	      <li class="nav-item">
+	        <a class="nav-link" href="/usuario/mostrar">Perfil</a>
+	      </li> 
 	    </ul>
 	    <figure class="figure photo-content mr-4">
 	    	<img th:src="${'/images/photos/'+perfilUsuario.getFotoUsuario()+'.jpg'}" alt="..." class="figure-img img img-fluid ">
@@ -215,62 +237,47 @@ footer * {
 	  </div>
 	</nav>
 		</header>
-	<section class="container">
-		<div class="form-title form-title text-center pr-3 pb-4 pt-4">Cadastrar Usuário</div>
+	<section class="container" th:object="${perfilUsuario}">
 		
-		<form method="post"  th:action="@{/usuarios/novo}" class="form-row d-flex flex-column align-items-center"  enctype="multipart/form-data">
 			<div class="row w-100">
-				<div class="form-group col-5">
-					<label for="cpf">Cpf *</label> 
-					<input type="number" class="form-control" name="cpf" required>
-				</div>
-				<div class="col-2"></div>
-				<div class="form-group col-5">
-					<label for="senha">Senha *</label> 
-					<input type="password" class="form-control" name="senha" required>
-				</div>
-			</div>
-			<div class="row w-100">
-				<div class="form-group col-5">
-				<label for="nome">Nome *</label> 
-					<input type="text" class="form-control" name="nome" required>
-				</div>
-				<div class="col-2"></div>
-				<div class="form-group col-5 d-flex align-items-center justify-content-around">
-					<div class="custom-control custom-radio custom-control-inline ">
-					  <input type="radio" id="admin-radio1" name="admin" class="custom-control-input pt-4" value=1 checked>
-					  <label class="custom-control-label" for="admin-radio2">Admin</label>
+				<div class="col-4">
+					<div class="form-group col-12 w-100 pt-5">
 					</div>
-					<div class="custom-control custom-radio custom-control-inline">
-					  <input type="radio" id="admin-radio2" name="admin" class="custom-control-input" value=2>
-					  <label class="custom-control-label" for="admin-radio2">Usuario Comum</label>
+					<div class="form-group col-12">
+					<label for="dica1">Dica Senha 1</label> 
+					<input type="text" class="form-control" th:value="*{dica1}" disabled>
+					</div>
+					<div class="form-group col-12">
+					<label for="dica1">Senha Recuperação 1</label> 
+					<input type="text" class="form-control" th:value="*{senha_recuperacao1}" disabled>
+					</div>
+					<div class="form-group col-12">
+					<label for="dica1">Dica Senha 1</label> 
+					<input type="text" class="form-control" th:value="*{dica2}" disabled>
+					</div>
+					<div class="form-group col-12">
+					<label for="dica1">Dica Senha 1</label> 
+					<input type="text" class="form-control" th:value="*{senha_recuperacao2}" disabled>
 					</div>
 				</div>
-			</div>
-				<div class="row w-100">
-				<div class="form-group col-5">
-					<label for="photo">Foto</label> 
-					<input type="file" class="form-control" name="photo">
+				<div class="col-4 pt-5 mt-4 mb-4 ml-5">
+					<div class="circle-bigger ml-5 d-flex justify-content-center align-items-center">
+						<img th:src="${'/images/photos/'+perfilUsuario.getFotoUsuario()+'.jpg'}" alt="..." class="figure-img img img-fluid circle-bigger-photo">
+					</div>
+					<div class="form-group mt-4 pt-2 col-12">
+					<label for="dica1">Nome</label> 
+					<input type="text" class="form-control" th:value="*{nome}" disabled>
+					</div>
 				</div>
-				<div class="col-2"></div>
-				<div class="form-group col-5">
-				<label for="nome">Cor do Usuário</label> 
-					<input type="color" class="form-control" name="corUsuario">
-				</div>
+				
 			</div>
-			<small class="form-text text-muted">(*) Campos obrigatórios</small>
 
-			<div class="row w-100 pt-4">
-				<div class="col-6 d-flex justify-content-end">
-					<button type="submit" class="btn btn-submit text-white btn-custom btn-block w-50"
-					style="margin-top: 10px;">Salvar</button>
+			<div class="row w-100 pt-1">
+				<div class="col-12 d-flex justify-content-center">
+					<a type="submit" class="btn btn-submit text-white btn-custom btn-block w-25 ml-5"
+					style="margin-top: 10px;" href="/usuario/alterar">Editar</a>
 				</div>
-			<div class="col-6 d-flex justify-content-start">
-					<a href="/" class="btn btn-light btn-remove-cancel text-white btn-block w-50" role="button"
-					style="margin-top: 10px;">Cancelar</a>
 			</div>
-			</div>
-		</form>
 	</section>
 	<footer
 		class="bg-dashboard d-flex py-2 justify-content-start align-items-center d-flex pl-5">

@@ -54,7 +54,8 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background-color: red
+            background-color: red;
+            display: inline-flex;
         }
         header {
         	height: 14%
@@ -122,7 +123,7 @@
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	  <a class="navbar-brand" href="#">
+	  <a class="navbar-brand" href="/">
 	     <img th:src="@{/images/image1.png}" alt="..." class="img img-fluid img-thumbnail bg-dashboard" style="border: none">
 	  </a>
 
@@ -138,11 +139,21 @@
 	        <a class="nav-link" href="#">Perfil</a>
 	      </li>  
 	    </ul>
-	    <figure class="figure photo-content mr-4">
-	    	<img src="fto1.jpg" alt="..." class="figure-img img img-fluid ">
+	     <figure class="figure photo-content mr-4">
+	    	<img th:src="${'/images/photos/'+perfilUsuario.getFotoUsuario()+'.jpg'}" alt="..." class="figure-img img img-fluid ">
           
               <figcaption class="figure-caption ml-1"> 
-              <div class="circle mr-1" style="display: inline-block"></div><span th:text="${perfilUsuario.getNome()}"></span>
+              	<!-- Example single danger button -->
+				<div class="dropleft show">
+				  <a class="dropleft-toggle link-custom" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div class="circle mr-1" th:style="${'background-color:'+ perfilUsuario.getCorUsuario()}"></div><span th:text="${perfilUsuario.getNome()}"></span>
+				  </a>
+				
+				  <div class="dropdown-menu pl-4 mt-3" aria-labelledby="dropdownMenuLink" >
+				    <a class="dropdown-item" href="/usuario/mostrar">Meu Perfil</a>
+				    <a class="dropdown-item" href="/logout">Logout</a>
+				  </div>
+				</div>
         </figcaption>
 
 	    </figure>
@@ -190,5 +201,8 @@
             <span> Política de Privacidade </span>
             <span> Direitos do Titular </span>
         </footer>
+        	 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   </body>
 </html>

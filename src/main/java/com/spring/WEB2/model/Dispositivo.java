@@ -10,17 +10,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name="dispositivos")
 public class Dispositivo {
-	public Dispositivo() {
-		// TODO Auto-generated constructor stub
-	}
+	
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO	)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_dispositivo")
-	private Long id;
+	private long id;
 	
 	private String nome;
 	
-	private String endereco;
+	private String movel;
+	
+	private long codigo;
 	
 	private boolean status;
 
@@ -32,12 +32,12 @@ public class Dispositivo {
 		this.nome = nome;
 	}
 
-	public String getEndereco() {
-		return endereco;
+	public String getMovel() {
+		return movel;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setMovel(String movel) {
+		this.movel = movel;
 	}
 
 	public boolean isStatus() {
@@ -46,6 +46,14 @@ public class Dispositivo {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
 	}
 
 	public long getId() {

@@ -1,0 +1,40 @@
+.form-title {
+	font-size: 2.4em;
+}
+
+input[type="text"], input[type="text"]:focus, input[type="password"], input[type="password"]:focus, input[type="file"],
+input[type="file"]:focus, input[type="number"], input[type="number"]:focus {
+	background: rgba(32, 22, 22, 0.51);
+	color: white!important
+}
+
+.custom-control-label{
+	font-size: 1.2em
+}
+
+.btn-submit {
+	background: #5D68D3;
+	border-radius: 8px;
+}
+
+.btn-submit:hover {
+	background: #5D68f3;
+	color: #fef!important;
+}
+
+
+.btn-remove-cancel {
+	background-color: #D45D5D
+}
+
+.btn-remove-cancel:hover {
+	background-color: #e85D54
+}
+
+
+
+input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
