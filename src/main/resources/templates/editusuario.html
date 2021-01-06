@@ -69,7 +69,7 @@ img {
 	height: 8px;
 	border-radius: 50%;
 	background-color: red;
-	display: inline-flex;
+	display: inline-flexs
 }
 
 header {
@@ -136,10 +136,9 @@ footer * {
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	   <a class="navbar-brand" href="/">
+	  <a class="navbar-brand" href="/">
 	     <img th:src="@{/images/image1.png}" alt="..." class="img img-fluid img-thumbnail bg-dashboard" style="border: none">
 	  </a>
-
 
 	  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo03">
 	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -153,7 +152,7 @@ footer * {
 	        <a class="nav-link" href="#">Perfil</a>
 	      </li>  
 	    </ul>
-	     <figure class="figure photo-content mr-4">
+	    <figure class="figure photo-content mr-4">
 	    	<img th:src="${'/images/photos/'+perfilUsuario.getFotoUsuario()+'.jpg'}" alt="..." class="figure-img img img-fluid ">
           
               <figcaption class="figure-caption ml-1"> 
@@ -195,7 +194,7 @@ footer * {
 	        <a class="nav-link" href="#">Perfil</a>
 	      </li>  
 	    </ul>
-	     <figure class="figure photo-content mr-4">
+	      <figure class="figure photo-content mr-4">
 	    	<img th:src="${'/images/photos/'+perfilUsuario.getFotoUsuario()+'.jpg'}" alt="..." class="figure-img img img-fluid ">
           
               <figcaption class="figure-caption ml-1"> 
@@ -217,35 +216,37 @@ footer * {
 	</nav>
 		</header>
 	<section class="container">
-		<div class="form-title form-title text-center pr-3 pb-4 pt-4">Cadastrar Dispositivo</div>
+		<div class="form-title form-title text-center pr-3 pb-4 pt-4">Editar Usuário</div>
 		
-		<form method="post"  th:action="@{/dispositivos/novo}" class="form-row d-flex flex-column align-items-center">
+		<form method="post"  th:action="@{/usuarios/editar}" class="form-row d-flex flex-column align-items-center" th:object="${usuario}"  enctype="multipart/form-data">
+			<div class="row w-100">
+				<input type="hidden" class="form-control" name="id" th:value="*{id}"  required>
+				<input type="hidden" class="form-control" name="perfilId" th:value="${usuario.getUsuarioPerfil().getId()}"  required>
+				<div class="form-group col-5">
+					<label for="cpf">Cpf *</label> 
+					<input type="number" class="form-control" name="cpf" th:value="*{cpf}" required>
+				</div>
+				<div class="col-2"></div>
+				<div class="form-group col-5">
+					<label for="senha">Senha *</label> 
+					<input type="password" class="form-control" name="senha" th:value="*{senha}" required>
+				</div>
+			</div>
 			<div class="row w-100">
 				<div class="form-group col-5">
 				<label for="nome">Nome *</label> 
-					<input type="text" class="form-control" name="nome" required>
+					<input type="text" class="form-control" name="nome" th:value="${usuario.getUsuarioPerfil().getNome()}" required>
 				</div>
 				<div class="col-2"></div>
-				<div class="form-group col-5">
-				<label for="nome">Móvel *</label> 
-					<input type="text" class="form-control" name="movel" required>
-				</div>
-			</div>
-				<div class="row w-100">
 				<div class="form-group col-5 d-flex align-items-center justify-content-around">
 					<div class="custom-control custom-radio custom-control-inline ">
-					  <input type="radio" id="admin-radio1" name="status" class="custom-control-input pt-4" value=1 checked>
-					  <label class="custom-control-label" for="admin-radio2">Ativo</label>
+					  <input type="radio" id="admin-radio1" th:name="admin" class="custom-control-input pt-4" value="true" checked>
+					  <label class="custom-control-label" for="admin-radio1">Admin</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-					  <input type="radio" id="admin-radio2" name="status" class="custom-control-input" value=2>
-					  <label class="custom-control-label" for="admin-radio2">Desativado</label>
+					  <input type="radio" id="admin-radio2" th:name="admin"  class="custom-control-input" value="false" >
+					  <label class="custom-control-label" for="admin-radio2">Usuario Comum</label>
 					</div>
-				</div>
-				<div class="col-2"></div>
-				<div class="form-group col-5">
-				<label for="codigo">Codigo</label> 
-					<input type="text" class="form-control" name="codigo">
 				</div>
 			</div>
 			<small class="form-text text-muted">(*) Campos obrigatórios</small>
@@ -256,8 +257,8 @@ footer * {
 					style="margin-top: 10px;">Salvar</button>
 				</div>
 			<div class="col-6 d-flex justify-content-start">
-					<a href="/" class="btn btn-light btn-remove-cancel text-white btn-block w-50" role="button"
-					style="margin-top: 10px;">Cancelar</a>
+					<a th:href="${'/usuarios/remover/'+ usuario.getId()}" class="btn btn-light btn-remove-cancel text-white btn-block w-50" role="button"
+					style="margin-top: 10px;">Remover</a>
 			</div>
 			</div>
 		</form>

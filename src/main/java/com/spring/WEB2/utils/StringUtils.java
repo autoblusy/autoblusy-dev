@@ -18,8 +18,11 @@ public class StringUtils {
 	
 	
 	public static String createPasswordWithSecurity(String password) {
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
-		String encodedPassword = passwordEncoder.encode(password);
-		return encodedPassword;
+		if(password.length() < 20) {
+			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
+			String encodedPassword = passwordEncoder.encode(password);
+			return encodedPassword;
+		}
+		return password;
 	}
 }

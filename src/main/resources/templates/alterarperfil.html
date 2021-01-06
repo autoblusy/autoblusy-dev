@@ -136,7 +136,7 @@ footer * {
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	  <a class="navbar-brand" href="#">
+	  <a class="navbar-brand" href="/">
 	     <img th:src="@{/images/image1.png}" alt="..." class="img img-fluid img-thumbnail bg-dashboard" style="border: none">
 	  </a>
 
@@ -149,7 +149,7 @@ footer * {
 	        <a class="nav-link" href="#">Meus dispositivos</a>
 	      </li>  
 	       <li class="nav-item">
-	        <a class="nav-link" href="#">Perfil</a>
+	        <a class="nav-link" href="/usuario/mostrar">Perfil</a>
 	      </li>  
 	    </ul>
 	    <figure class="figure photo-content mr-4">
@@ -164,7 +164,7 @@ footer * {
 				
 				  <div class="dropdown-menu pl-4 mt-3" aria-labelledby="dropdownMenuLink" >
 				    <a class="dropdown-item" href="/logout">Logout</a>
-				    
+				     <a class="dropdown-item" href="/usuario/mostrar">Meu Perfil</a>
 				  </div>
 				</div>
         </figcaption>
@@ -188,10 +188,10 @@ footer * {
 	        <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
 	      </li> -->
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">Administração</a>
+	        <a class="nav-link" href="/administracao">Administração</a>
 	      </li>  
 	       <li class="nav-item">
-	        <a class="nav-link" href="#">Perfil</a>
+	        <a class="nav-link" href="/usuario/mostrar">Perfil</a>
 	      </li>  
 	    </ul>
 	      <figure class="figure photo-content mr-4">
@@ -206,6 +206,7 @@ footer * {
 				
 				  <div class="dropdown-menu pl-4 mt-3" aria-labelledby="dropdownMenuLink" >
 				    <a class="dropdown-item" href="/logout">Logout</a>
+				    <a class="dropdown-item" href="/usuario/mostrar">Meu Perfil</a>
 				  </div>
 				</div>
         </figcaption>
@@ -217,42 +218,40 @@ footer * {
 	<section class="container">
 		<div class="form-title form-title text-center pr-3 pb-4 pt-4">Alterar Perfil</div>
 		
-		<form method="post"  th:action="@{/usuarios/novo}" class="form-row d-flex flex-column align-items-center"  enctype="multipart/form-data">
+		<form method="post" th:object="${perfilUsuario}"  th:action="@{/usuario/alterar}" class="form-row d-flex flex-column align-items-center"  enctype="multipart/form-data">
 			<div class="row w-100">
 				<div class="form-group col-5">
 					<label for="corUsuario">Cor</label> 
-					<input type="color" class="form-control" name="corUsuario" required>
+					<input type="color" class="form-control" th:field="*{corUsuario}" required>
 				</div>
 				<div class="col-2"></div>
 				<div class="form-group col-5">
-					<label for="fotoUsuario">Foto</label> 
-					<input type="file" class="form-control" name="fotoUsuario">
+					<label for="password">Senha</label> 
+					<input type="password" class="form-control"  th:name="senha">
 				</div>
 			</div>
 				<div class="row w-100">
 				<div class="form-group col-5">
 					<label for="senha">Dica Recuperação 1</label> 
-					<input type="text" class="form-control" name="dica1">
+					<input type="text" class="form-control" th:field="*{dica1}" name="dica1">
 				</div>
 				<div class="col-2"></div>
 				<div class="form-group col-5">
 				<label for="nome">Senha de recuperação 1</label> 
-					<input type="password" class="form-control" name="senha_recuperacao_1">
+					<input type="text" class="form-control" th:field="*{senha_recuperacao1}">
 				</div>
 			</div>
 			<div class="row w-100">
 				<div class="form-group col-5">
 					<label for="senha">Dica Recuperação 2</label> 
-					<input type="text" class="form-control" name="dica2">
+					<input type="text" class="form-control" th:field="*{dica2}" name="dica2">
 				</div>
 				<div class="col-2"></div>
 				<div class="form-group col-5">
 				<label for="nome">Senha de recuperação 2</label> 
-					<input type="password" class="form-control" name="senha_recuperacao_2">
+					<input type="text" class="form-control" th:field="*{senha_recuperacao2}" name="senha_recuperacao_2">
 				</div>
 			</div>
-			<small class="form-text text-muted">(*) Campos obrigatórios</small>
-
 			<div class="row w-100 pt-4">
 				<div class="col-6 d-flex justify-content-end">
 					<button type="submit" class="btn btn-submit text-white btn-custom btn-block w-50"
@@ -260,7 +259,7 @@ footer * {
 				</div>
 			<div class="col-6 d-flex justify-content-start">
 					<a href="/" class="btn btn-light btn-remove-cancel text-white btn-block w-50" role="button"
-					style="margin-top: 10px;">Cancelar</a>
+					style="margin-top: 10px;" onclick="location.back()">Cancelar</a>
 			</div>
 			</div>
 		</form>

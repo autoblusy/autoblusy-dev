@@ -34,7 +34,6 @@ public class IndexController {
 		}
 		System.out.println(nome+"Alguma coisa");
 		Usuario usuario = usuarioRepository.findByCpf(Long.parseLong(nome));
-		System.out.println(usuario.getCpf());
 		session.setAttribute("usuario", usuario);
 		return new ModelAndView("redirect:/dashboard");
 	}

@@ -83,10 +83,13 @@ public class UsuarioPerfil {
 		this.corUsuario = corUsuario;
 	}
 
-	public String getUltimoAcesso() {
+	public String getUltimoAcesso(boolean t) {
 		String ano =  this.ultimoAcesso.substring(0, 4);
 		String mes =  this.ultimoAcesso.substring(5, 7);
 		String dia = this.ultimoAcesso.substring(8, 10);
+		if(t == true) {
+			return this.ultimoAcesso;
+		}
 		return new String(dia + "/"+mes+"/"+ano);
 	}
 

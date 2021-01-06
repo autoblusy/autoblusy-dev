@@ -188,7 +188,7 @@ footer * {
 	        <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
 	      </li> -->
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">Administração</a>
+	        <a class="nav-link" href="/administracao">Administração</a>
 	      </li>  
 	       <li class="nav-item">
 	        <a class="nav-link" href="#">Perfil</a>
@@ -238,11 +238,11 @@ footer * {
 				<div class="col-2"></div>
 				<div class="form-group col-5 d-flex align-items-center justify-content-around">
 					<div class="custom-control custom-radio custom-control-inline ">
-					  <input type="radio" id="admin-radio1" name="admin" class="custom-control-input pt-4" value=1 checked>
-					  <label class="custom-control-label" for="admin-radio2">Admin</label>
+					  <input type="radio" id="admin-radio1" th:name="admin" class="custom-control-input pt-4" value="true">
+					  <label class="custom-control-label" for="admin-radio1">Admin</label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-					  <input type="radio" id="admin-radio2" name="admin" class="custom-control-input" value=2>
+					  <input type="radio" id="admin-radio2" th:name="admin"  class="custom-control-input" value="false" >
 					  <label class="custom-control-label" for="admin-radio2">Usuario Comum</label>
 					</div>
 				</div>

@@ -3,6 +3,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css" integrity="sha512-I8lSB676wT2jGSNnvIhbYGqHMiZOc0+cl18soJSWPvJCkGm8xnTcXZafn2xTf1woMXz1AY3Z1Vd/qAPvjXB4Kw==" crossorigin="anonymous" />
     <title>Dashboard ADMIN</title>
     <style type="text/css">
     	.bg-dashboard {
@@ -34,6 +35,14 @@
         	border: 1px;
         	margin-bottom: 7.1vh!important;
         }
+        
+        .adicionar {
+            font-size: 3em;
+            font-weight: 800;
+            vertical-align: top;
+            padding-bottom: 8px;
+            line-height: 8px;
+        }
          .photo-content figcaption {
          }
         .photo-content img {
@@ -57,21 +66,13 @@
             background-color: red;
             display: inline-flex;
         }
-          .circle-list {
+        
+         .circle-list {
                 position: absolute;
                 margin-top: 6px;
                 left: 3rem;
             }
-        
-         .list {
-            background-color: #C1E8FF;
-            height: 70%;
-        }
-
-        .list ul {
-            list-style: none
-        }
-        
+            
         header {
         	height: 14%
         }
@@ -113,7 +114,15 @@
             height: 42vh;
             background-color: #C1E8FF;
         }
-         .h-82 {
+        
+          .list {
+            background-color: #C1E8FF;
+            height: 70%;
+        }
+
+        .list ul {
+            list-style: none
+        }         .h-82 {
             height: 74%;
         }
         }
@@ -148,7 +157,7 @@
 	        <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
 	      </li> -->
 	      <li class="nav-item">
-	        <a class="nav-link" href="/administracao">Administração</a>
+	        <a class="nav-link" href="#">Administração</a>
 	      </li>  
 	       <li class="nav-item">
 	        <a class="nav-link" href="/usuario/mostrar">Perfil</a>
@@ -181,35 +190,50 @@
                    <span>Ultima alteração no sistema</span>
                </div>
         </aside>
-        <main class=" bg-white h-82 py-5 row w-100">
-            <section class="col-6 d-flex justify-content-center"> 
-                <div class="card w-75 bg-dashboard">
-                    <div class="card-body p-5">
-                        <div class="card-item p-5">
-                            <h2 class="display-4">Perfil:</h2>
+        <main class=" bg-white h-82 py-5 row w-100 d-flex justify-content-around">
+            <div class="col-1"> </div>
+            <section class="col-4 d-flex justify-content-center relative-container"> 
+                <div class="card w-100 bg-dashboard">
+                    <div class="card-body p-4">
+                        <div class="card-item p-5 pb-0 mb-0">
+                            <h2 class="title">Usuarios</h2>
                         </div>
-                         <div class="card-item p-5">
-                            <h2 class="display-4">Permissões:</h2>
-                        </div>
+                          <div class="list pb-0 mb-0"> 
+                                <ul class="w-100"> 
+                                <span th:each="usuario : ${usuarios}">
+                                	<a th:href="${'/usuarios/editar/' + usuario.getId()}">
+                                		<div class="circle circle-list mr-1" style="display: inline-block"></div> <li th:text="${((usuario.getUsuarioPerfil()).getNome())}"></li>
+                                	</a>
+                                </span>
+                                  
+                            </ul>
+                          </div>    
+                          <a href="usuarios/novo"><div class="adicionar d-flex justify-content-end align-items-start pr-4"> + </div></a>
                     </div>
                 </div>
             </section>
-            <section class="col-6 d-flex justify-content-center"> 
-                <div class="card w-75 bg-dashboard">
-                    <div class="card-body">
-                          <div class="card-item p-5">
-                            <h2 class="display-4">Dispostivos:</h2>
-                            <div class="list-data rounded">
-                                <ul style="list-style: none">
-                                    <li>Portão</li>
-                                    <li>Telivisao</li>
-                                    <li>Janela</li>
-                                 </ul>
-                            </div>
+            <div class="col-2 d-flex justify-content-center align-items-center"> <i class="fa fa-link fa-3x"> </i></div>
+            <section class="col-4 d-flex justify-content-center"> 
+                <div class="card w-100 bg-dashboard">
+                 <div class="card-body p-4">
+                        <div class="card-item p-5 pb-0 mb-0">
+                            <h2 class="title">Dispositivos</h2>
                         </div>
+                           <div class="list pb-0 mb-0"> 
+                                <ul class="w-100"> 
+                                <span th:each="dispositivo : ${dispositivos}">
+                                	<a th:href="${'/dispositivos/editar/' + dispositivo.getId()}">
+                                		<div class="circle circle-list mr-1" style="display: inline-block"></div> <li th:text="${dispositivo.getNome()}"></li>
+                                	</a>
+                                </span>
+                                  
+                            </ul>
+                          </div>    
+                          <a href="/dispositivos/novo"><div class="adicionar d-flex justify-content-end align-items-start pr-4"> + </div></a>
                     </div>
                 </div>
             </section>
+            <div class="col-1"> </div>
         </main>
         <footer class="bg-dashboard d-flex py-2 justify-content-start align-items-center d-flex pl-5">
             <span> Copyright © 2020 Autoblusy LTDA Todos os direitos reservados </span>            

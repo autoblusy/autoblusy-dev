@@ -95,6 +95,10 @@ public class Usuario implements UserDetails{
 	public String getUsername() {
 		return Long.toString(this.cpf);
 	}
+	
+	public void setUsername(long cpf) {
+		this.cpf = cpf;
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {

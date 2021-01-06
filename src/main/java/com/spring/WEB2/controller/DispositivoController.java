@@ -44,11 +44,18 @@ public class DispositivoController {
 	
 	@RequestMapping(value="/dispositivos/novo", method = RequestMethod.GET)
     public ModelAndView getDispositivoForm( HttpSession session){
-	  ModelAndView mv = new ModelAndView( "dispositivoform");
 	  Usuario usuario = (Usuario)session.getAttribute("usuario");
-	  mv.addObject("usuario",usuario);
-	  mv.addObject("perfilUsuario",usuario.getUsuarioPerfil());
-	  return mv;
+	  if( usuario.getAdmin()) {
+		  ModelAndView mv = new ModelAndView( "dispositivoform");
+		  mv.addObject("usuario",usuario);
+		  mv.addObject("perfilUsuario",usuario.getUsuarioPerfil());
+		  return mv;
+		} else {
+			return new ModelAndView("redirect:/");
+		}
+	 
+	  
+	  
     }
 
     @RequestMapping(value="/dispositivos/novo", method=RequestMethod.POST)

@@ -42,9 +42,9 @@ public class UsuarioServiceImp implements UsuarioService{
 	}
 
 	@Override
-	public boolean verifyIfExistsAndSave(long cpf, Usuario usuario, UsuarioPerfil perfilUsuario) {
+	public boolean verifyIfExistsAndSave(long cpf, Usuario usuario, UsuarioPerfil perfilUsuario,boolean isChange) {
 		Usuario user = findByCpf(cpf);
-		if(user == null) {
+		if(user == null && isChange == false) {
 			perfilUsuario.setUltimoAcesso((new Date(System.currentTimeMillis())).toString());
 			UsuarioPerfil result = usuarioPerfilRepository.save(perfilUsuario);
 			usuario.setUsuarioPerfil(result);
